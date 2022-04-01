@@ -1,19 +1,28 @@
 package main
 
 import (
-	"demo/area"           //nameof the module/root package
-	rect "demo/area/rect" // nameof the module/root package/sub package
-	"fmt"                 // a standard pacakge
+	rect "demo/shape/rect" // nameof the module/root package/sub package
+	"fmt"
 )
 
 func main() {
-	fmt.Println("hello package")
-	a := rect.AreaOfRectangle(10.23, 15.34)
-	//area := area.areaOfRect(10.23, 15.34)
-	//area.L = 100.12
-	//area.B = 101.32
-	fmt.Println(a)
-	fmt.Println(rect.L, rect.B)
-	areaS := area.AreaOfSquare(12.34)
-	fmt.Println(areaS)
+	r := &rect.Rect{Length: 12.45, Bredth: 13.65}
+	area, err := r.GetArea()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Area of Rect:", area)
+	}
+	perimeter, err := r.GetPerimeter()
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("Area of Perimeter:", perimeter)
+	}
+
+	fmt.Println(r.Area)
+	fmt.Println(r.Perimeter)
+
+	fmt.Println("Calling using rect package function", rect.AreaOfRect(*r))
+
 }
